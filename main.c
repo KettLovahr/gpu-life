@@ -3,22 +3,23 @@
 
 #define WIDTH 1600
 #define HEIGHT 900
+#define SCALE 0.2
 
 int main() {
     InitWindow(WIDTH, HEIGHT, "GPU Game Of Life");
-    SetTargetFPS(30);
+    SetTargetFPS(60);
 
     RenderTexture2D frames[2];
-    frames[0] = LoadRenderTexture(WIDTH, HEIGHT);
+    frames[0] = LoadRenderTexture(WIDTH * SCALE, HEIGHT * SCALE);
     SetTextureWrap(frames[0].texture, TEXTURE_WRAP_REPEAT);
     SetTextureFilter(frames[0].texture, TEXTURE_FILTER_POINT);
-    frames[1] = LoadRenderTexture(WIDTH, HEIGHT);
+    frames[1] = LoadRenderTexture(WIDTH * SCALE, HEIGHT * SCALE);
     SetTextureWrap(frames[1].texture, TEXTURE_WRAP_REPEAT);
     SetTextureFilter(frames[1].texture, TEXTURE_FILTER_POINT);
     int current = 0;
 
     Shader gol_shader = LoadShader(NULL, "gol.glsl");
-    Vector2 resolution = {WIDTH, HEIGHT};
+    Vector2 resolution = {(WIDTH * SCALE), (HEIGHT * SCALE)};
     int resolution_loc = GetShaderLocation(gol_shader, "resolution");
     SetShaderValue(gol_shader, resolution_loc, &resolution, SHADER_UNIFORM_VEC2);
 
@@ -44,7 +45,7 @@ int main() {
 
         BeginDrawing();
         ClearBackground(BLACK);
-        DrawTexture(frames[current].texture, 0, 0, WHITE);
+        DrawTextureEx(frames[current].texture, (Vector2){0, 0}, 0, 1 / SCALE, WHITE);
         EndDrawing();
 
 
