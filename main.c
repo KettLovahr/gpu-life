@@ -1,12 +1,13 @@
 #include <stdlib.h>
 #include <raylib.h>
 
-#define WIDTH 1600
-#define HEIGHT 900
-#define SCALE 0.2
+#define WIDTH 1920
+#define HEIGHT 1080
+#define SCALE 0.25
 
 int main() {
     InitWindow(WIDTH, HEIGHT, "GPU Game Of Life");
+    ToggleFullscreen();
     SetTargetFPS(60);
 
     RenderTexture2D frames[2];

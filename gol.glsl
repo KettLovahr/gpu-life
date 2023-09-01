@@ -28,7 +28,9 @@ void main() {
             }
         }
     }
-    finalColor = vec4(vec3(0.0), 1.0);
+    //finalColor = vec4(vec3(0.0), 1.0);
+    finalColor = texture(texture0, vec2(fragTexCoord.x, -fragTexCoord.y));
+    finalColor -= vec4(0.5, 0.03, 0.01, 0.0);
     if (alive == 1.0) {
         if (count == 2) {finalColor = vec4(vec3(1.0), 1.0);}
         if (count == 3) {finalColor = vec4(vec3(1.0), 1.0);}
