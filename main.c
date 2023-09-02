@@ -3,7 +3,7 @@
 
 #define WIDTH 1920
 #define HEIGHT 1080
-#define SCALE 0.25
+#define SCALE 1.0
 
 int main() {
     InitWindow(WIDTH, HEIGHT, "GPU Game Of Life");
@@ -26,8 +26,8 @@ int main() {
 
     BeginTextureMode(frames[0]);
         ClearBackground(BLACK);
-        for (int i = 0; i < WIDTH; i++){
-            for (int j = 0; j < HEIGHT; j++) {
+        for (int i = (WIDTH*SCALE)/5; i < (WIDTH*SCALE)*4/5; i++){
+            for (int j = (HEIGHT*SCALE)/5; j < (HEIGHT*SCALE)*4/5; j++) {
                 float color = (float)(rand() % 2);
                 DrawPixel(i, j, ColorFromNormalized((Vector4){color, color, color, 1.0}));
             }
